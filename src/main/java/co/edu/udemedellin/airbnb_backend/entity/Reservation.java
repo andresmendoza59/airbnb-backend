@@ -28,7 +28,10 @@ public class Reservation {
     @JoinColumn(name = "property_id")
     private Property property;
 
+    @Column(nullable = false)
     private LocalDate checkInDate;
+
+    @Column(nullable = false)
     private LocalDate checkOutDate;
 
 }
