@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reservations")
+@CrossOrigin(origins="*", allowedHeaders = "@")
 public class ReservationController {
     private final ReservationService reservationService;
 
