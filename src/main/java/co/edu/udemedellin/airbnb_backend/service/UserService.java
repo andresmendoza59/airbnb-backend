@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static co.edu.udemedellin.airbnb_backend.entity.Role.GUEST;
-
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -22,7 +20,7 @@ public class UserService {
     public UserDTO getUserById(Long id) throws RuntimeException {
         if (userRepository.existsById(id)) {
             User user = userRepository.getReferenceById(id);
-            return new UserDTO(user.getId(), user.getUsername(), user.getPassword(), GUEST);
+            return new UserDTO(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
         } else {
             throw new RuntimeException("User does not exist");
         }
@@ -33,6 +31,9 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new IllegalArgumentException("Username already exists, try another one");
+        }
         return userRepository.save(user);
     }
 }
