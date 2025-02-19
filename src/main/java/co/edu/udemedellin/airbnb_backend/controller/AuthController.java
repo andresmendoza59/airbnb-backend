@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,16 +34,16 @@ public class AuthController {
     }
 
     @PostMapping("/login/")
+    @Transactional
     public ResponseEntity<String> login(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUsername(),
                 authRequest.getPassword()));
         String token = jwtUtil.generateToken(authRequest.getUsername());
-        //return ResponseEntity.ok(token);
         if (authentication.isAuthenticated()) {
             return ResponseEntity.ok(token);
         } else {
-            ResponseEntity.status(500).body("Hello");
+            ResponseEntity.status(500).body("Invalid credentials!");
             throw new RuntimeException("Invalid credentials!");
         }
 

@@ -11,22 +11,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Table(name = "images")
+public class Image {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @ManyToOne
+    @JoinColumn(name = "property_id", nullable = false)
+    private Property property;
 
     @Column(nullable = false)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.GUEST;
-
-    @Override
-    public String toString() {
-        return String.format("Id: %d\tUsername: %s\tRole:%s", id, username, role);
-    }
+    private String url;
 }
