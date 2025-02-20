@@ -2,6 +2,7 @@ package co.edu.udemedellin.airbnb_backend.service;
 
 import co.edu.udemedellin.airbnb_backend.dto.PropertyDTO;
 import co.edu.udemedellin.airbnb_backend.entity.Property;
+import co.edu.udemedellin.airbnb_backend.repository.ImageRepository;
 import co.edu.udemedellin.airbnb_backend.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,12 @@ import java.util.List;
 @Service
 public class PropertyService {
     private final PropertyRepository propertyRepository;
+    private final ImageRepository imageRepository;
 
     @Autowired
-    public PropertyService(PropertyRepository propertyRepository) {
+    public PropertyService(PropertyRepository propertyRepository, ImageRepository imageRepository) {
         this.propertyRepository = propertyRepository;
+        this.imageRepository = imageRepository;
     }
 
     public Property addProperty(Property property) {
@@ -31,7 +34,6 @@ public class PropertyService {
 
     public PropertyDTO getProperty(Long id) {
         Property property = propertyRepository.getReferenceById(id);
-        return new PropertyDTO(property.getId(), property.getName(), property.getDescription(),
-                property.getLocation(), property.getDailyPrice(), property.isExperience());
+        return new PropertyDTO(property);
     }
 }

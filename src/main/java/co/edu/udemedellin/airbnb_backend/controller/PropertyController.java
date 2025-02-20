@@ -3,7 +3,7 @@ package co.edu.udemedellin.airbnb_backend.controller;
 import co.edu.udemedellin.airbnb_backend.dto.PropertyDTO;
 import co.edu.udemedellin.airbnb_backend.entity.Property;
 import co.edu.udemedellin.airbnb_backend.service.PropertyService;
-import co.edu.udemedellin.airbnb_backend.service.S3Service;
+//import co.edu.udemedellin.airbnb_backend.service.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,11 @@ import java.util.List;
 @RequestMapping("/properties")
 public class PropertyController {
     private final PropertyService propertyService;
-    private final S3Service s3Service;
+    //private final S3Service s3Service;
 
     @Autowired
-    public PropertyController(PropertyService propertyService, S3Service s3Service) {
+    public PropertyController(PropertyService propertyService) {
         this.propertyService = propertyService;
-        this.s3Service = s3Service;
     }
 
     @GetMapping

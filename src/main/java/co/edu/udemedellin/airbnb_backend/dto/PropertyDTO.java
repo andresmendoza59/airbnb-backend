@@ -1,6 +1,8 @@
 package co.edu.udemedellin.airbnb_backend.dto;
 
+import co.edu.udemedellin.airbnb_backend.entity.Image;
 import co.edu.udemedellin.airbnb_backend.entity.Property;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

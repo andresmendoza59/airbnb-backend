@@ -8,6 +8,9 @@ import co.edu.udemedellin.airbnb_backend.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ImageService {
     private final ImageRepository imageRepository;
@@ -45,5 +48,14 @@ public class ImageService {
         } catch (RuntimeException e) {
             throw new RuntimeException("Image does not exist");
         }
+    }
+
+    public List<ImageRequest> getByPropertyId(Long id) {
+        List<Image> images = imageRepository.getByPropertyId(id);
+        List<ImageRequest> imageDtoList = new ArrayList<>(images.size());
+        for (Image image: images) {
+            imageDtoList.add(new ImageRequest(image));
+        }
+        return imageDtoList;
     }
 }
