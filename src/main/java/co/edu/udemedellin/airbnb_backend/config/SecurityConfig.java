@@ -37,8 +37,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("properties", "/api/auth/register/", "/api/auth/login/").permitAll()
-                        .requestMatchers("users/**").hasRole("ADMIN")
+                        .requestMatchers("/properties", "/properties/**", "/api/auth/register/",
+                                "/api/auth/login/", "/characteristics", "/destinies",
+                                "/images").permitAll()
+                        .requestMatchers("/users").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

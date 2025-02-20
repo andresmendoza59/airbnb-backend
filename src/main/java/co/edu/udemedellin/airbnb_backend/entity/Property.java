@@ -23,6 +23,9 @@ public class Property {
     private String location;
     private double dailyPrice;
 
+    @Column(name = "is_experience")
+    private boolean isExperience = false;
+
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 

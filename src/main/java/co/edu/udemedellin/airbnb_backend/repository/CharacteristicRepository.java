@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CharacteristicRepository extends JpaRepository<Characteristic, Long> {
-
+    Characteristic findByIconUrl(String iconUrl);
 }
