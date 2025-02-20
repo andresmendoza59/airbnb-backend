@@ -16,8 +16,8 @@ public class CharacteristicController {
     }
 
     @GetMapping
-    public ResponseEntity<Characteristic> getCharacteristic(@RequestBody Characteristic characteristic) {
-        return ResponseEntity.ok(characteristicService.getCharacteristic(characteristic));
+    public ResponseEntity<Characteristic> getCharacteristic(@RequestParam String iconUrl) {
+        return ResponseEntity.ok(characteristicService.getCharacteristic(iconUrl));
     }
 
     @PostMapping

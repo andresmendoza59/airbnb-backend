@@ -24,12 +24,12 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.createReservation(reservationDto));
     }
 
-    @GetMapping("/{id}")
-    public ReservationDTO requestReservation(@PathVariable Long id) {
+    @GetMapping
+    public ReservationDTO requestReservation(@RequestBody Long id) {
         return reservationService.requestReservation(id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<ReservationDTO> getAllReservations() {
         return reservationService.getAllReservations();
     }

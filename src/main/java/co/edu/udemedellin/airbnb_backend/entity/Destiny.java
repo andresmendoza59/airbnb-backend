@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
+import lombok.Setter;
 
 @Entity
 @Getter
-@Service
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "destinies")

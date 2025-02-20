@@ -27,21 +27,20 @@ public class PropertyController {
     }
 
     @GetMapping
-    public List<Property> getAllProperties() {
+    public List<PropertyDTO> getAllProperties() {
         return propertyService.findAllProperties();
     }
 
     @PostMapping
     @Qualifier(value = "addProperty")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Property> createProperty(@RequestBody Property property) {
         return ResponseEntity.ok(propertyService.addProperty(property));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get")
     @Qualifier(value = "getProperty")
-    public PropertyDTO getProperty(@PathVariable Long id) {
-        return propertyService.getProperty(id);
+    public ResponseEntity<PropertyDTO> getProperty(@RequestParam Long id) {
+        return ResponseEntity.ok(propertyService.getProperty(id));
     }
 
 //    @PostMapping("/upload")

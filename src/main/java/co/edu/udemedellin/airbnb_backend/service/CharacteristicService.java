@@ -17,8 +17,8 @@ public class CharacteristicService {
         return characteristicRepository.save(characteristic);
     }
 
-    public Characteristic getCharacteristic(Characteristic characteristic) {
-        return characteristicRepository.getReferenceById(characteristic.getId());
+    public Characteristic getCharacteristic(String iconUrl) {
+        return characteristicRepository.findByIconUrl(iconUrl);
     }
 
     public void deleteCharacteristic(Long id) throws RuntimeException {
